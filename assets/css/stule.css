@@ -1,0 +1,26 @@
+body{
+    background-image: url("../images/strength-training-chalk-white-icons-set-black-background-strength-training-chalk-white-icons-set-black-background-home-188902358.jpg");    
+    background-size: 320px;
+}
+.container{
+   margin-top: 40px;
+   padding-top: 533px;
+   border: 4px solid orangered;
+   border-radius: 20px; 
+   opacity: 0.9;
+}
+.hero{
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    top: 1px;
+    right: 420px;
+}
+.enter{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 400px;
+    right: 580px;
+}
+
