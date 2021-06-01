@@ -2,8 +2,9 @@
 const chestValEl = document.querySelector("#chest");
 const backValEl = document.querySelector("#back");
 const shouldersValEl = document.querySelector("#shoulders");
-const bicepsValEl = document.querySelector("#biceps");
-const tricepsValEl = document.querySelector("#triceps");
+const absValEl = document.querySelector("#abs");
+const armsValEl = document.querySelector("#arms");
+const legsValEl = document.querySelector("#legs");
 // The next page arrow
 const nextPageEl = document.querySelector("#nextPage");
 
@@ -35,9 +36,47 @@ const getExerciseData = function() {
 
 const chooseExercise = function(data) {
     // Now, we pick one of the workouts from the list, provided it meets the requirements that the user provided.
-    const randomExercise = Math.floor(Math.random() * data.results.length);
-    const workoutData = data.results[randomExercise];
-    
+    console.log(data);
+    // First, we capture the values for each muscle group in an object
+    const musclesObj = {
+        chest: chestValEl.textContent,
+        back: backValEl.textContent,
+        shoulders: shouldersValEl.textContent,
+        abs: absValEl.textContent,
+        arms: armsValEl.textContent,
+        legs: legsValEl.textContent
+    }
+
+    // Then, we create an array of their values;
+    const musclesArr = Object.values(musclesObj);
+
+    const weightedArr = [];
+    // Then, we put them in an array that is weighted based on the numbers provided for each value
+    musclesArr.forEach((muscle, index) => {
+        const muscleNames = Object.keys(musclesObj);
+
+        for (let i = 0; i < muscle; i++) {
+            weightedArr.push(muscleNames[index]);
+        } 
+    });
+    // Then, we randomly pick one item from the array. This means that while there's a chance someone gets a workout they weighted against, they are far likely to get a workout for which they did weight. And any muscle they set to 0 is not on the list. The chosen muscle is what we compare against the API data, to find a workout
+    const weightedRandom = Math.floor(Math.random() * weightedArr.length);
+    const chosenMuscle = weightedArr[weightedRandom];
+
+    // Now that we have our muscle, we can search the data for an exercise that meets the prerequisite
+    let workoutData = {};
+    console.log(workoutData)
+    for (let i = 0; i < data.results.length; i++) {
+        if (data.results[i].category.name.toLowerCase() === chosenMuscle) {
+            workoutData = data.results[i];
+            break;
+        }
+    }
+    // If workoutData somehow is still empty (e.g., none of the exercises it pulled happen to be of the target muscle group), we do it aaaaall again...
+    if (!workoutData) {
+        makeInputData();
+    }
+    // Finally, we store the information in local storage, to be accessed on the next page
     localStorage.setItem("workoutData", JSON.stringify(workoutData))
 };
 
@@ -56,7 +95,7 @@ const incrementVal = function(event) {
     let targVal = targetEl.textContent;
     // Then increment that value, or reduce to 0 if already at max
     if (targVal > 5) {
-        targVal = 1;
+        targVal = 0;
     } else {
         targVal++;
     }
@@ -67,7 +106,8 @@ const incrementVal = function(event) {
 chestValEl.addEventListener("click", incrementVal);
 backValEl.addEventListener("click", incrementVal);
 shouldersValEl.addEventListener("click", incrementVal);
-bicepsValEl.addEventListener("click", incrementVal);
-tricepsValEl.addEventListener("click", incrementVal);
+absValEl.addEventListener("click", incrementVal);
+armsValEl.addEventListener("click", incrementVal);
+legsValEl.addEventListener("click", incrementVal);
 // The click event for leaving the page; which is where all the magic happens
 nextPageEl.addEventListener("click", makeInputData);
