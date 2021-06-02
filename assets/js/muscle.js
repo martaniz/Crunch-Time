@@ -13,6 +13,17 @@ const apiUrl = "https://wger.de/api/v2/exerciseinfo?";
 
 const english = "language=2"
 
+let userData = {};
+
+// Grabs the user data from local storage, to update it
+const importUserData = function() {
+    const data = JSON.parse(localStorage.getItem("userData"));
+
+    if (data) {
+        userData = data;
+    }
+};
+
 // Get the data from wger
 const getExerciseData = function() {
     // This is the length of the wger API's english-language list of exercises, minus 20. Hard-coding it because it's inefficient to call it to see the length and then call it again; we can change this later if it proves unwieldy. By subtracting 20, I get a value between 0 and 209, so I always get the max of 20 items in the response. In any case, it's used to create a random position within the total 
@@ -26,8 +37,8 @@ const getExerciseData = function() {
                 // Turn it to JSON we can read
                 response.json()
                     .then(function(data) {
-                        console.log(data);
-                        // Now we choose which exercise
+                        // Now we choose which exercise.
+ 
                         chooseExercise(data);
                     });
             }
@@ -36,8 +47,7 @@ const getExerciseData = function() {
 
 const chooseExercise = function(data) {
     // Now, we pick one of the workouts from the list, provided it meets the requirements that the user provided.
-    console.log(data);
-    // First, we capture the values for each muscle group in an object
+
     const musclesObj = {
         chest: chestValEl.textContent,
         back: backValEl.textContent,
@@ -47,7 +57,7 @@ const chooseExercise = function(data) {
         legs: legsValEl.textContent
     }
 
-    // Then, we create an array of their values;
+    // Then, we create an array of the user values;
     const musclesArr = Object.values(musclesObj);
 
     const weightedArr = [];
@@ -64,25 +74,29 @@ const chooseExercise = function(data) {
     const chosenMuscle = weightedArr[weightedRandom];
 
     // Now that we have our muscle, we can search the data for an exercise that meets the prerequisite
-    let workoutData = {};
-    console.log(workoutData)
+    let chosenWorkout = {};
+
     for (let i = 0; i < data.results.length; i++) {
         if (data.results[i].category.name.toLowerCase() === chosenMuscle) {
-            workoutData = data.results[i];
+            chosenWorkout = data.results[i];
             break;
         }
     }
-    // If workoutData somehow is still empty (e.g., none of the exercises it pulled happen to be of the target muscle group), we do it aaaaall again...
-    if (!workoutData) {
+    // If chosenWorkout somehow is still empty (e.g., none of the exercises it pulled happen to be of the target muscle group), we do it aaaaall again...
+    if (!Object.entries(chosenWorkout).length) {
         makeInputData();
+        return;
     }
-    // Finally, we store the information in local storage, to be accessed on the next page
-    localStorage.setItem("workoutData", JSON.stringify(workoutData))
+    // Finally, we store the information in local storage, to be accessed on the next page. We make sure it's all in one neat package
+    userData.chosenWorkout = chosenWorkout;
+    localStorage.setItem("userData", JSON.stringify(userData));
 };
 
 const makeInputData = function() {
     // First, clear the existing localStorage data for the previous exercise
-    localStorage.removeItem("workoutData");
+    localStorage.removeItem("exerciseData");
+    localStorage.removeItem("chosenExercise");
+    localStorage.removeItem("userInput");
     // Then we get the data for the exercise
     getExerciseData();
 };
@@ -102,6 +116,9 @@ const incrementVal = function(event) {
     // Then push to the page
     targetEl.textContent = targVal;
 }
+
+importUserData();
+
 // All the click events for the muscle number values
 chestValEl.addEventListener("click", incrementVal);
 backValEl.addEventListener("click", incrementVal);
