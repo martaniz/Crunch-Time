@@ -1,12 +1,12 @@
 body{
-    background-image: url("../images/strength-training-chalk-white-icons-set-black-background-strength-training-chalk-white-icons-set-black-background-home-188902358.jpg");    
+    background-image: url("../images/background.PNG");    
     background-size: 320px;
 }
 .container{
    border: 10px solid #ff8c24;
    border-radius: 20px; 
-   /*opacity: 0.9;*/
    margin-top: 60px;
+   
 }
 .start{
     display: grid;
@@ -45,4 +45,29 @@ h6{
 .left{
     display: grid;
     justify-content: end;
+}
+
+.slideContainer{
+    width: 75%;
+    
+}
+
+.slider{
+    width: 100%;
+    height: 20px;
+}
+
+.slider::after{
+    content: '60 ';
+    font-size: 1.2rem;
+    position: absolute;
+    left: 97%;
+    top: 100%;
+}
+.slider::before{
+    content: '0';
+    font-size: 1.2rem;
+    position: absolute;
+    right: 97%;
+    top: 100%;
 }
