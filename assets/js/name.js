@@ -8,11 +8,17 @@ nextEl.addEventListener("click", function(event){
     var userData = { userName: `${name}` };
 
     // Saves data to storage
-    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("userData", 
+    // converts array to string
+    JSON.stringify(userData));
 });
 
-// Retrieve the object from storage
-var getObject = localStorage.getItem('userData');
+function retrieveObj() {
+    // Retrieve the object from storage
+    var getObject = localStorage.getItem('userData');
+    
+    // converts string back to array
+    return JSON.parse(getObject);
+}
 
-console.log('getObject: ', JSON.parse(getObject));
-
+retrieveObj();
