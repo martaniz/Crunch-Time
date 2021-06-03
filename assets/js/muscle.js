@@ -90,13 +90,10 @@ const chooseExercise = function(data) {
     // Finally, we store the information in local storage, to be accessed on the next page. We make sure it's all in one neat package
     userData.chosenWorkout = chosenWorkout;
     localStorage.setItem("userData", JSON.stringify(userData));
+    window.location.href = "counter.html";
 };
 
 const makeInputData = function() {
-    // First, clear the existing localStorage data for the previous exercise
-    localStorage.removeItem("exerciseData");
-    localStorage.removeItem("chosenExercise");
-    localStorage.removeItem("userInput");
     // Then we get the data for the exercise
     getExerciseData();
 };
