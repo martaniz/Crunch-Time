@@ -1,8 +1,8 @@
 //capture data from localstorage
 
-var userData = JSON.parse(localStorage.getItem("userData"));
+var userPotato = JSON.parse(localStorage.getItem("userData"));
 var choosenWorkoutEL = document.querySelector("#choosenWorkout");
-var randomExercise = userData.workoutData.randomExercise
+var randomExercise = userPotato.workoutData.randomExercise
 console.log(randomExercise)
 
 
