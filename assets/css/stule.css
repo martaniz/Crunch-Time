@@ -71,3 +71,9 @@ h6{
     right: 97%;
     top: 100%;
 }
+
+.potatoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
