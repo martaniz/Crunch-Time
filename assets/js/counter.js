@@ -20,6 +20,8 @@ slider.oninput = function(){
 
 rightArrow.addEventListener("click", function(){
     localStorage.setItem("userData", JSON.stringify(userData));
+
+
 })
 
 
