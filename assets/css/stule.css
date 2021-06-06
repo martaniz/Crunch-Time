@@ -65,7 +65,7 @@ h6{
     top: 100%;
 }
 .slider::before{
-    content: '0';
+    content: '1';
     font-size: 1.2rem;
     position: absolute;
     right: 97%;

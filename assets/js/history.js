@@ -11,9 +11,11 @@ function retrieveName(){
     if (nameContainer === null ){
         nameContainer = [];
     }
-    nameContainer.push(userData.userName);
-    console.log(userData.userName);
     
+    if (Object.keys(userData).length > 0 ){
+        nameContainer.push(userData.userName);
+    }
+
     // for loop to print to page
     for (i = 0; i < nameContainer.length; i++ ) {
         var para = document.createElement("p");
@@ -31,19 +33,17 @@ function retrieveWorkout() {
     if (workoutContainer === null ){
         workoutContainer = [];
     }
-
-    // getting the data and push it to workoutContainer
-    // workoutContainer.push(userData);
-
-    workoutContainer.push(userData.chosenWorkout.name);
     
+    if (Object.keys(userData).length > 0 ){
+        // getting the name and push it to workoutContainer
+        workoutContainer.push(userData.chosenWorkout.name);
+    }
     // for loop to print to page
     for (i = 0; i < workoutContainer.length; i++ ) {
         var para = document.createElement("p");
         para.textContent = workoutContainer[i];
         tableData.appendChild(para);
     }
-    console.log(workoutContainer);
     // save to workoutContainer to workoutContainer
     localStorage.setItem("workoutContainer", JSON.stringify(workoutContainer));
 }
@@ -54,57 +54,21 @@ function retrieveTime(){
     if (timeContainer === null ){
         timeContainer = [];
     }
-    timeContainer.push(userData.userTime);
+
+    if (Object.keys(userData).length > 0 ){
+        timeContainer.push(userData.userTime);
+    }
+
     
-    // for loop to print to page
     for (i = 0; i < timeContainer.length; i++ ) {
         var para = document.createElement("p");
-        para.textContent = timeContainer[i]/60 + " mins";
+        para.textContent = timeContainer[i]/60 + " minutes";
         tableTime.appendChild(para);
     }
-    console.log(timeContainer);
-    console.log(tableTime);
+
     localStorage.setItem("timeContainer", JSON.stringify(timeContainer));
 }
 retrieveTime();
 
 
-
-
-
-
-    // historyArr.push(userData.userName);
-    
-    // // for loop to print to page
-    // for (i = 0; i <= historyArr.length; i++ ) {
-    //     var para = document.createElement("p");
-    //     para.textContent = historyArr[i];
-    //     tableData.appendChild(para);
-    // }
-    
-    // historyArr.push(userData.userTime);
-    
-    // for loop to print to page
-    // for (i = 0; i <= historyArr.length; i++ ) {
-    //     var para = document.createElement("p");
-    //     para.textContent = historyArr[i];
-    //     tableTime.appendChild(para);
-    // }
-
-    
-
-
-    
-
-
-    // var getTime = getObject.userTime;
-    
-    // getObject.push(getTime);
-
-    // localStorage.setItem("userData", JSON.stringify(getObject));
-
-    // var para = document.createElement("p");
-    // para.textContent = getTime;
-    // tableTime.appendChild(para);
-
-
+localStorage.setItem("userData", JSON.stringify({}));
