@@ -2,7 +2,7 @@ var nextEl = document.querySelector(".nextBtn");
 var inputEl = document.querySelector(".validate");
 
 
-nextEl.addEventListener("click", function(event){
+nextEl.addEventListener("click", function(){
     // Gets input value
     var name = inputEl.value;
     var userData = { userName: `${name}` };
