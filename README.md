@@ -1,5 +1,5 @@
 # Crunch-Time
-##Created By: Keifer, Marta, Rizzel, Mayuran, Nayandeep 
+## Created By: Keifer, Marta, Rizzel, Mayuran, Nayandeep 
 
 Description: Crunch Time is an exercise app for people with little time. The user inputs how much time they have and the app provides them an exercise to do while displaying motivational quotes. The app then records your time, exercises and name and records in a history setting.
 
