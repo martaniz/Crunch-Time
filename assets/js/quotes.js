@@ -13,17 +13,17 @@ fetch('https://type.fit/api/quotes')
     getQuote(data)
 var callQuote = setInterval(() => {
     getQuote(data)
-}, 100000);
+}, 30000);
 
-var timeLeft = JSON.parse(localStorage.getItem("workout-data"))
-// console.log(timeLeft.time)
-timeLeft = parseInt(timeLeft.time*60000)
-console.log(timeLeft)
+// var timeLeft = JSON.parse(localStorage.getItem("workout-data"))
+// // console.log(timeLeft.time)
+// timeLeft = parseInt(timeLeft.time*60000)
+// console.log(timeLeft)
 
 
-setTimeout(() => {
-    clearInterval(callQuote)
-}, timeLeft);
+// setTimeout(() => {
+//     clearInterval(callQuote)
+// }, timeLeft);
 // getQuoteBtn.addEventListener("click", function(){git add
     
 // }) 

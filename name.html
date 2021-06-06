@@ -22,7 +22,7 @@
                 <div class="col s4"></div>
             </div>
             <div class="row">
-                <form class="col s12">
+                <form class="col s12" id="form">
                     <div class="row">
                         <div class="col s5"></div>
                         <div class="input-field col s2 avatar">
@@ -38,14 +38,15 @@
                             </a>
                         </div>
                         <div class="input-field col s2">
-                            <input id="icon_prefix userInput" type="text" class="validate" placeholder="First Name">
+                            <input id="icon_prefix userInput" type="text" class="validate" placeholder="First Name" required>
                         </div>
                         <div class="col s5 nextBtn">
                             <a href="muscle.html">
-                                <i class = "medium material-icons"  >keyboard_arrow_right</i>
+                                <i class = "medium material-icons" >keyboard_arrow_right</i>
                             </a>
                         </div>
                     </div>
+                    <div id="error"></div>
                 </form>
             </div>
             <div class="row">
