@@ -10,11 +10,16 @@ nextEl.addEventListener("click", function(event){
     
     if (inputEl.value === ''){
         event.preventDefault()
+        
+        if (!document.querySelector("#message")){
         var error = document.getElementById('error')
         var errorMessage = document.createElement('p')
-        errorMessage.textContent = 'Name is required'
+        errorMessage.textContent = 'Name is Required'
+        errorMessage.setAttribute('id', 'message')
         error.appendChild(errorMessage)
-        return false;
+        
+        }return false;
+        
     } else {
         var name = inputEl.value;
         var userData = { userName: `${name}` };

@@ -14,6 +14,7 @@ fetch('https://type.fit/api/quotes')
 var callQuote = setInterval(() => {
     getQuote(data)
 }, 30000);
+});
 
 // var timeLeft = JSON.parse(localStorage.getItem("workout-data"))
 // // console.log(timeLeft.time)
@@ -28,14 +29,6 @@ var callQuote = setInterval(() => {
     
 // }) 
 
-});
-
-// var testObject = {
-//     name: "Mike",
-//     time: "10",
-//     exercises: [],
-// }
-// localStorage.setItem("workout-data", JSON.stringify(testObject))
 
 var getQuote = function (data){
    var randomIndex = Math.floor(Math.random()*data.length)
